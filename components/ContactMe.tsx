@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { PhoneIcon, MapPinIcon, EnvelopeIcon } from "@heroicons/react/24/solid";
+import { PageInfo } from "../typings";
 import { useForm, SubmitHandler } from "react-hook-form";
 
 type Props = {
+    pageInfo: PageInfo;
 };
 
 type Inputs = {
@@ -13,15 +15,15 @@ type Inputs = {
     message: string;
 };
 
-function ContactMe({}: Props) {
+function ContactMe({ pageInfo }: Props) {
     const {
         register,
         handleSubmit,
-        formState: { errors },
     } = useForm<Inputs>();
-    const onSubmit: SubmitHandler<Inputs> = (data) => {
-        window.location.href = `mailto:bchang0999@gmail.com?subject=${data.subject}&body=Hi, my name is ${data.name}. ${data.message}`;
-    };
+    const onSubmit: SubmitHandler<Inputs> = (formData) => {
+        window.location.href = `mailto:bchang0999@gmail?subject=${formData.subject}&body=Hi, my name is ${formData.name}. ${formData.message} (${formData.email})`;
+    } 
+    ;
 
     return (
         <motion.div
@@ -36,24 +38,24 @@ function ContactMe({}: Props) {
 
             <div className="flex flex-col space-y-10">
                 <h4 className="text-4xl font-semibold text-center">
-                    I have got just what you need.{" "}
+                    Got a idea for an app or website?{" "}
                     <span className="decoration-[cyan]/50 underline">Lets Talk.</span>
                 </h4>
 
                 <div className="space-y-10">
                     <div className="flex items-center space-x-5 justify-center">
                         <PhoneIcon className="text-[cyan] h-7 w-7 animate-pulse" />
-                        <p className="text-2xl">+1 917-509-7515</p>
+                        <p className="text-2xl">{pageInfo.phoneNumber}</p>
                     </div>
                     <div className="flex items-center space-x-5 justify-center">
                         <EnvelopeIcon className="text-[cyan] h-7 w-7 animate-pulse" />
-                        <a className="text-2xl" href={`mailto:bchang0999@gmail.com`}>
-                            bchang0999@gmail.com
+                        <a className="text-2xl" href={`mailto:${pageInfo.email}`}>
+                            {pageInfo.email}
                         </a>
                     </div>
                     <div className="flex items-center space-x-5 justify-center">
                         <MapPinIcon className="text-[cyan] h-7 w-7 animate-pulse" />
-                        <p className="text-2xl">Naugatuck, CT 06770</p>
+                        <p className="text-2xl">{pageInfo.address}</p>
                     </div>
                 </div>
 

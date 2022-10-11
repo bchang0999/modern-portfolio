@@ -1,14 +1,18 @@
 import Link from "next/link";
 import React from "react";
 import { Cursor, useTypewriter } from "react-simple-typewriter";
+import { urlFor } from "../sanity";
+import { PageInfo } from "../typings";
 import BackgroundCircles from "./BackgroundCircles";
 
-type Props = {};
+type Props = {
+    pageInfo: PageInfo;
+};
 
-function Hero({}: Props) {
-    const [text] = useTypewriter({
+function Hero({ pageInfo }: Props) {
+    const [text, count] = useTypewriter({
         words: [
-            `Welcome to Brandon Chang's portfolio`,
+            `Welcome to ${pageInfo?.name} portfolio`,
             "Just-Your-Average-Full-Stack-Dev.tsx",
             "Import { Knowledge } from ../Everything",
             "<WhatIsHashMap?/>",
@@ -21,8 +25,8 @@ function Hero({}: Props) {
             <BackgroundCircles />
             <img
                 className="relative rounded-full h-32 w-32 mx-auto object-cover"
-                src={"https://cdn.sanity.io/images/f2x6zm2c/production/20d42da3ad87018e9eb19f9bbd810f0bec1bdded-1280x720.jpg?w=2000&fit=max&auto=format&dpr=2"}
-                alt=""
+                src={urlFor(pageInfo?.heroImage).url()}
+                alt="profile pic"
             />
             <div className="z-20 relative">
                 <h2 className="tracking-[15px] text-sm uppercase text-gray-500 pb-2">

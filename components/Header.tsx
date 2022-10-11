@@ -2,11 +2,13 @@ import React from "react";
 import { SocialIcon } from "react-social-icons";
 import { motion } from "framer-motion";
 import Link from "next/link";
+import { Social } from "../typings";
 
+type Props = {
+    socials: Social[];
+};
 
-type Props = {};
-
-const Header = () => {
+const Header = ({ socials }: Props) => {
     return (
         <header className="sticky top-0 flex items-start xl:items-center justify-between p-5 z-20 max-w-7xl mx-auto">
             <motion.div
@@ -23,30 +25,17 @@ const Header = () => {
                 transition={{ duration: 1.5 }}
                 className="flex flex-row items-center"
             >
-                {/* {socials.map((social) => (
+                {socials.map((social) => (
                     <SocialIcon
                         key={social._id}
                         url={social.url}
                         fgColor="gray"
                         bgColor="transparent"
                     />
-                ))} */}
+                ))}
 
-                <SocialIcon
-                    className="cursor-pointer"
-                    network="linkedin"
-                    fgColor="gray"
-                    bgColor="transparent"
-                    url={"https://www.linkedin.com/in/brandon-chang-521bb120b/"}
-                />
 
-                <SocialIcon
-                    className="cursor-pointer"
-                    network="instagram"
-                    fgColor="gray"
-                    bgColor="transparent"
-                    url={"https://www.instagram.com/bchang0999/"}
-                />
+
 
             </motion.div>
 
