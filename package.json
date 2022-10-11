@@ -6,9 +6,14 @@
     "start": "next start"
   },
   "dependencies": {
+    "@heroicons/react": "^2.0.12",
+    "framer-motion": "^7.5.3",
     "next": "latest",
     "react": "18.1.0",
-    "react-dom": "18.1.0"
+    "react-dom": "18.1.0",
+    "react-hook-form": "^7.37.0",
+    "react-simple-typewriter": "^4.0.5",
+    "react-social-icons": "^5.15.0"
   },
   "devDependencies": {
     "@types/node": "17.0.35",
