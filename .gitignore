@@ -15,7 +15,7 @@
 
 /sanity/node_modules
 
-# production
+# productiongit co
 /build
 
 # misc
